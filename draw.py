@@ -88,9 +88,5 @@ draw_wave(ax, 6, 7, 2)
 # 设置图形样式
 ax.set_xlim(-1, 8)
 ax.set_ylim(-1, 8)
-ax.axis("off")
+ax.axis("on")
 plt.show()
-
-
-
-  
