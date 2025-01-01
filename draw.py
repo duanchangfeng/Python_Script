@@ -284,3 +284,98 @@ ax.set_xlim(-1, 8)
 ax.set_ylim(-1, 8)
 ax.axis("on")
 plt.show()
+
+
+# 六个节点的例子
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+def draw_wave(ax, x_start, x_end, y, amplitude=0.3, wavelength=1, points=100):
+    """
+    绘制波浪线
+    :param ax: matplotlib 的绘图对象
+    :param x_start: 波浪线的起始 x 坐标
+    :param x_end: 波浪线的结束 x 坐标
+    :param y: 波浪线的 y 坐标
+    :param amplitude: 波浪线的振幅
+    :param wavelength: 波长
+    :param points: 波浪线的点数量
+    """
+    x = np.linspace(x_start, x_end, points)
+    y_wave = y + amplitude * np.sin(2 * np.pi * (x - x_start) / wavelength)
+    ax.plot(x, y_wave, color="blue", lw=1.5)
+
+
+# 创建绘图
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# 节点坐标 (手动指定)
+nodes = {
+    "a": (0, 2),
+    "b": (2, 0),
+    "c": (2, 4),
+    "d": (4, 0),
+    "k": (4, 4),
+    "e": (6, 2),
+}
+
+# 绘制连接线
+arrow_props = dict(arrowstyle="-", color="darkgray", lw=1.5)
+ax.annotate("", xy=(0, 2), xytext=(2, 4), arrowprops=arrow_props)
+ax.annotate("", xy=(0, 2), xytext=(2, 0), arrowprops=arrow_props)
+ax.annotate("", xy=(2, 0), xytext=(4, 0), arrowprops=arrow_props)
+ax.annotate("", xy=(0, 2), xytext=(6, 2), arrowprops=arrow_props)
+ax.annotate("", xy=(4, 4), xytext=(6, 2), arrowprops=arrow_props)
+ax.annotate("", xy=(4, 0), xytext=(6, 2), arrowprops=arrow_props)
+ax.annotate("", xy=(4, 0), xytext=(2, 4), arrowprops=arrow_props)
+ax.annotate("", xy=(2, 0), xytext=(4, 4), arrowprops=arrow_props)
+ax.annotate("", xy=(2, 4), xytext=(4, 4), arrowprops=arrow_props)
+
+
+# 绘制节点
+for label, (x, y) in nodes.items():
+    ax.scatter(x, y, color="lightgray", s=500, zorder=3)
+
+# 添加相同的标注到两个节点上
+ax.text(0, 2, "6", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(2, 0, "5", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(2, 4, "1", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(4, 0, "4", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(4, 4, "2", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(6, 2, "3", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+
+ax.text(1, 1, "3", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(3, 0, "6", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(1, 3, "4", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(3, 4, "7", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(5, 3, "8", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(5, 1, "9", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(3.5, 3, "3", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(3.5, 1, "1", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+ax.text(4, 2, "2", color="black", fontsize=14, ha="center", va="center",fontname="Georgia")
+
+
+
+
+# 设置图形样式
+ax.set_xlim(-1, 8)
+ax.set_ylim(-1, 8)
+ax.axis("on")
+plt.show()
+
+
+# 六个节点的例子求解后的结果
+
+arrow_props = dict(arrowstyle="-", color="darkgray", lw=1.5)
+ax.annotate("", xy=(0, 2), xytext=(2, 0), arrowprops=arrow_props)
+ax.annotate("", xy=(4, 0), xytext=(6, 2), arrowprops=arrow_props)
+ax.annotate("", xy=(2, 4), xytext=(4, 4), arrowprops=arrow_props)
+
+arrow_props = dict(arrowstyle="-", color="red", lw=2)
+ax.annotate("", xy=(0, 2), xytext=(2, 4), arrowprops=arrow_props)
+ax.annotate("", xy=(0, 2), xytext=(6, 2), arrowprops=arrow_props)
+ax.annotate("", xy=(2, 0), xytext=(4, 4), arrowprops=arrow_props)
+ax.annotate("", xy=(4, 0), xytext=(2, 4), arrowprops=arrow_props)
+ax.annotate("", xy=(2, 0), xytext=(4, 0), arrowprops=arrow_props)
+ax.annotate("", xy=(4, 4), xytext=(6, 2), arrowprops=arrow_props)
